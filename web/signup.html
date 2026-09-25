@@ -1,13 +1,43 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en-NZ">
   <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width,initial-scale=1" />
-    <title>Sign Up</title>
+    <title>Sign up | WREMO ArcGIS Onboarding</title>
     <!-- Load Calcite Components -->
     <script type="module" src="https://js.arcgis.com/calcite-components/2.10.0/calcite.esm.js"></script>
     <link rel="stylesheet" href="https://js.arcgis.com/calcite-components/2.10.0/calcite.css" />
+    <!-- NEW: Montserrat, matching index.html -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&display=swap" rel="stylesheet">
     <style>
+
+    /* NEW: brand tokens, copied verbatim from index.html */
+    :root {
+      --wremo-cdem-blue: #005A9C;     /* CDEM blue  - primary */
+      --wremo-cdem-yellow: #FFF200;   /* CDEM yellow - primary */
+      --wremo-deep-blue: #1E2E56;     /* Deep blue - headings */
+      --wremo-soft-black: #3B3A2F;    /* Soft black - body copy */
+      --wremo-page-bg: #F4F6F8;       /* Neutral page background */
+
+      /* Calcite brand theming - see note in handover about token naming */
+      --calcite-ui-brand: var(--wremo-cdem-blue);
+      --calcite-ui-brand-hover: var(--wremo-deep-blue);
+      --calcite-ui-brand-press: var(--wremo-deep-blue);
+      --calcite-color-brand: var(--wremo-cdem-blue);
+      --calcite-color-brand-hover: var(--wremo-deep-blue);
+      --calcite-color-brand-press: var(--wremo-deep-blue);
+    }
+
+    /* NEW: page background and base typeface */
+    body {
+      margin: 0;
+      background-color: var(--wremo-page-bg);
+      font-family: "Montserrat", "Aptos", "Segoe UI", sans-serif;
+      color: var(--wremo-soft-black);
+    }
+    
       /* Make the main container flexible */
     main {
       display: flex;
@@ -20,6 +50,16 @@
       max-width: 400px;   /* limits width on desktop */
       width: 100%;        /* full width on mobile */
     }
+
+    .card-body {
+        padding: 1.5rem;
+        background-color: #FFFFFF;
+      }
+
+    calcite-label {
+        font-family: "Montserrat", "Aptos", "Segoe UI", sans-serif;
+        color: var(--wremo-soft-black);
+      }
 
     /* Adjust font sizes on small screens */
     @media (max-width: 480px) {
@@ -52,51 +92,52 @@
   </head>
   <body>
     <main style="display:flex; justify-content:center; padding:2rem;">
-      <calcite-card style="max-width:400px; width:100%;">
-        <h1 style="text-align:center; margin-bottom:1rem;">Sign Up</h1>
+      <calcite-card>
 
-        <form id="signupForm">
+        <div class="card-body">
+          <form id="signupForm">
 
-          <calcite-label>
-            Given Name
-            <calcite-input id="firstname" required></calcite-input>
-          </calcite-label>
+            <calcite-label>
+              First Name
+              <calcite-input id="firstname" required></calcite-input>
+            </calcite-label>
 
-          <calcite-label>
-            Family Name
-            <calcite-input id="lastname" required></calcite-input>
-          </calcite-label>
+            <calcite-label>
+              Last Name
+              <calcite-input id="lastname" required></calcite-input>
+            </calcite-label>
 
-          <calcite-label>
-            Email
-            <calcite-input id="email" type="email" required></calcite-input>
-          </calcite-label>
+            <calcite-label>
+              Email
+              <calcite-input id="email" type="email" required></calcite-input>
+            </calcite-label>
 
-          <calcite-label>
-            Username
-            <calcite-input id="username" required=true></calcite-input>
-          </calcite-label>
+            <calcite-label>
+              Username
+              <calcite-input id="username" required=true></calcite-input>
+            </calcite-label>
 
-          <calcite-label>
-            Password
-            <calcite-input id="password" type="password" required></calcite-input>
-          </calcite-label>
+            <calcite-label>
+              Password
+              <calcite-input id="password" type="password" required></calcite-input>
+            </calcite-label>
 
-          <calcite-label>
-            Confirm Password
-            <calcite-input id="password2" type="password" required></calcite-input>
-          </calcite-label>
+            <calcite-label>
+              Confirm Password
+              <calcite-input id="password2" type="password" required></calcite-input>
+            </calcite-label>
 
+            <calcite-button id="submitBtn" type="submit" width="full" scale="l" style="margin-top:1rem;">
+              Sign up
+            </calcite-button>
+          </form>
 
+          <calcite-notice id="message" width="full" open style="display:none; margin-top:1rem;">
+            <div slot="message"></div>
+          </calcite-notice>
 
-          <calcite-button id="submitBtn" type="submit" width="full" scale="l" style="margin-top:1rem;">
-            Sign up
-          </calcite-button>
-        </form>
+        </div>
 
-        <calcite-notice id="message" width="full" open style="display:none; margin-top:1rem;">
-          <div slot="message"></div>
-        </calcite-notice>
       </calcite-card>
     </main>
 
