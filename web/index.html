@@ -1,13 +1,41 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en-NZ">
   <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width,initial-scale=1" />
-    <title>ArcGIS Setup</title>
+    <title>WREMO ArcGIS Onboarding</title>
     <!-- Load Calcite Components -->
     <script type="module" src="https://js.arcgis.com/calcite-components/2.10.0/calcite.esm.js"></script>
     <link rel="stylesheet" href="https://js.arcgis.com/calcite-components/2.10.0/calcite.css" />
+    <!-- WREMO primary external typeface (Montserrat) -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&display=swap" rel="stylesheet">
     <style>
+
+      :root {
+        --wremo-cdem-blue: #005A9C;     /* CDEM blue  - primary */
+        --wremo-cdem-yellow: #FFF200;   /* CDEM yellow - primary */
+        --wremo-deep-blue: #1E2E56;     /* Deep blue - headings */
+        --wremo-soft-black: #3B3A2F;    /* Soft black - body copy */
+        --wremo-page-bg: #F4F6F8;       /* Neutral page background */
+
+        /* Calcite brand theming - see note in handover about token naming */
+        --calcite-ui-brand: var(--wremo-cdem-blue);
+        --calcite-ui-brand-hover: var(--wremo-deep-blue);
+        --calcite-ui-brand-press: var(--wremo-deep-blue);
+        --calcite-color-brand: var(--wremo-cdem-blue);
+        --calcite-color-brand-hover: var(--wremo-deep-blue);
+        --calcite-color-brand-press: var(--wremo-deep-blue);
+      }
+
+      body {
+        margin: 0;
+        background-color: var(--wremo-page-bg);
+        font-family: "Montserrat", "Aptos", "Segoe UI", sans-serif;
+        color: var(--wremo-soft-black);
+      }
+      
         /* Make the main container flexible */
       main {
         display: flex;
@@ -19,6 +47,49 @@
       calcite-card {
         max-width: 400px;   /* limits width on desktop */
         width: 100%;        /* full width on mobile */
+      }
+
+      /* Logo sits on white, with clear space, per the logo application rules */
+      .brand-header {
+        display: flex;
+        justify-content: center;
+        padding: 1.5rem 1rem 1rem 1rem;
+        background-color: #FFFFFF;
+      }
+
+      .brand-header img {
+        width: 220px;          /* well above the 115px online minimum */
+        max-width: 80%;
+        height: auto;          /* never stretch or distort the logo */
+      }
+
+      .card-body {
+        padding: 0 1.5rem 1.5rem 1.5rem;
+        background-color: #FFFFFF;
+      }
+
+      h1 {
+        font-family: "Montserrat", "Aptos", "Segoe UI", sans-serif;
+        font-weight: 700;
+        font-size: 1.6rem;
+        line-height: 1.25;
+        color: var(--wremo-cdem-blue);
+        text-align: center;
+        margin: 0 0 0.75rem 0;
+      }
+
+      /* Supporting text explaining the two sign-in pathways */
+      .intro-copy {
+        font-size: 0.95rem;
+        line-height: 1.5;
+        color: var(--wremo-soft-black);
+        text-align: left;       /* left aligned, ragged edge - accessibility rule */
+        margin: 0 0 1.25rem 0;
+      }
+
+      .intro-copy strong {
+        font-weight: 600;
+        color: var(--wremo-deep-blue);
       }
 
       /* Adjust font sizes on small screens */
@@ -52,8 +123,26 @@
   </head>
   <body>
     <main style="display:flex; justify-content:center; padding:2rem;">
-      <calcite-card style="max-width:400px; width:100%;">
-        <h1 style="text-align:center; margin-bottom:1rem;">ArcGIS Onboarding</h1>
+      <calcite-card>
+
+        <!-- WREMO Office logo -->
+        <div class="brand-header">
+          <img
+            src="https://wremo.maps.arcgis.com/sharing/rest/content/items/fb4c4a4a1802431c8557b10e29ec24bd/data"
+            alt="Wellington Region Emergency Management Office logo" />
+        </div>
+
+        <div class="card-body">
+          <h1>WREMO ArcGIS Onboarding</h1>
+
+          <p class="intro-copy">
+            <strong>Already have an ArcGIS Online account?</strong> Choose
+            <em>Sign in</em> to use your existing account.
+          </p>
+          <p class="intro-copy">
+            <strong>New to ArcGIS Online?</strong> Choose <em>Sign up</em> to create a new,
+            temporary account.
+          </p>
 
           <calcite-button id="btn-signin" width="full" scale="l" style="margin-top:1rem;">
             Sign in
@@ -62,9 +151,12 @@
           <calcite-button id="btn-signup" appearance="outline" width="full" scale="l" style="margin-top:1rem;">
             Sign up
           </calcite-button>
-        <calcite-notice id="message" width="full" open style="display:none; margin-top:1rem;">
-          <div slot="message"></div>
-        </calcite-notice>
+
+          <calcite-notice id="message" width="full" open style="display:none; margin-top:1rem;">
+            <div slot="message"></div>
+          </calcite-notice>
+        </div>
+
       </calcite-card>
     </main>
 
